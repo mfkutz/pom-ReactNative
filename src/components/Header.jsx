@@ -2,17 +2,13 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native"
 
 const options = ["Pomodoro", "Short Break", "Long Break"]
 
-
-
 export const Header = ({ currentTime, setCurrentTime, setTime }) => {
-
 
     function handlePress(index) {
         const newTime = index === 0 ? 25 : index === 1 ? 5 : 15
         setCurrentTime(index)
         setTime(newTime * 60)
     }
-
 
     return (
         <View style={styles.view}>
@@ -25,13 +21,12 @@ export const Header = ({ currentTime, setCurrentTime, setTime }) => {
                     ]}
                     onPress={() => handlePress(index)}
                 >
-                    <Text style={{fontWeight:"bold"}}>{item}</Text>
+                    <Text style={{ fontWeight: "bold" }}>{item}</Text>
                 </TouchableOpacity>
             ))}
         </View>
     )
 }
-
 
 const styles = StyleSheet.create({
     view: {

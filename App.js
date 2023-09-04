@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { Button, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Header } from './src/components/Header';
 import Timer from './src/components/Timer';
 import { Audio } from "expo-av"
@@ -9,11 +9,9 @@ const colors = ["#F7DC6F", "#A2D9CE", "#D7BDE2"]
 
 export default function App() {
 
-  const [isWorking, setIsWorking] = useState(false)
   const [time, setTime] = useState(25 * 60)
   const [currentTime, setCurrentTime] = useState("POMO" | "SHORT" | "BREAK")
   const [isActive, setIsActive] = useState(false)
-
 
   useEffect(() => {
     let interval = null
@@ -26,11 +24,8 @@ export default function App() {
       clearInterval(interval)
     }
 
-
     if (time === 0) {
       setIsActive(false)
-      /* setIsWorking(!isWorking) */
-      /* setTime(isWorking ? 1500 : 300) */
       playAlarm()
 
       if (currentTime === 0) {
@@ -42,19 +37,15 @@ export default function App() {
       if (currentTime === 2) {
         setTime(15 * 60)
       }
-
     }
 
     return () => clearInterval(interval)
 
   }, [isActive, time])
 
-
-
   function handleStartStop() {
     setIsActive(!isActive)
     playSound()
-   /*  playAlarm() */
   }
 
   async function playSound() {
@@ -69,7 +60,6 @@ export default function App() {
       require('./assets/alarm.mp3')
     )
     await sound.playAsync()
-
   }
 
   return (
@@ -85,15 +75,13 @@ export default function App() {
       />
       <StatusBar style="dark" />
       <Timer time={time} />
-
       <TouchableOpacity style={styles.button} onPress={handleStartStop}>
         <Text style={styles.textBtn}>
           {isActive ? "STOP" : "START"}
         </Text>
       </TouchableOpacity>
-
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -101,7 +89,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 40,
     paddingHorizontal: 15,
-
   },
   text: {
     fontSize: 32,
@@ -118,5 +105,4 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     alignItems: "center",
   }
-
-});
+})

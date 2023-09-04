@@ -1,13 +1,11 @@
 import { View, StyleSheet, Text } from "react-native"
 
-
 const Timer = ({ time }) => {
 
     const formattedTime = `${Math.floor(time / 60)
         .toString()
         .padStart(2, "0")}:${(time % 60).toString()
             .padStart(2, "0")}`
-
 
     return (
         <View style={styles.container}>
@@ -33,5 +31,4 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         textAlign: "center",
     }
-
 })
